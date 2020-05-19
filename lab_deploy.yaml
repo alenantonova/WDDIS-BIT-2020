@@ -1,0 +1,27 @@
+---
+-
+  hosts: rbcserver
+  remote_user: mftiedu
+  tasks: 
+    - 
+      copy: "src=rbc-service/target/rbc-service-0.1.0.jar dest=edu/alenantonova/ owner=mftiedu mode=7777"
+      name: "Copy rbc-service"
+    - 
+      name: "Deploy rbc-service"
+      shell: "nohup java -jar edu/alenantonova/rbc-service-0.1.0.jar &"
+- 
+  hosts: weatherserver
+  remote_user: edumfti
+  tasks: 
+    -
+      copy: "src=weather-service/target/weather-service-0.1.0.jar dest=edu/alenantonova/ owner=edumfti mode=7777"
+      name: "Copy weather-service"
+    - 
+      copy: "src=predict-service/target/predict-service-0.1.0.jar dest=edu/alenantonova/ owner=edumfti mode=7777"
+      name: "Copy predict-service"
+    -
+      name: "Deploy weather-service"
+      shell: "nohup java -jar /edu/alenantonova/weather-service-0.1.0.jar &"
+    -
+      name: "Deploy predict-servce"
+      shell: "nohup java -jar /edu/alenantonova/predict-server-0.1.0.jar &"
