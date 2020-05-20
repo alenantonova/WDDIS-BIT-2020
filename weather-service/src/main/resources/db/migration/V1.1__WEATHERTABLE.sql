@@ -1,5 +1,5 @@
-CREATE TABLE IF NOT EXISTS psgtable.application_weather (
-    id int,
+CREATE TABLE IF NOT EXISTS application_weather (
+    id SERIAL,
     time BIGINT,
-    value double precision
+    temperature double precision
 )
