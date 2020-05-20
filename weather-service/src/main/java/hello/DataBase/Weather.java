@@ -2,7 +2,7 @@ package hello.DataBase;
 
 import javax.persistence.*;
 
-@Table(name = "APPLICATION_WEATHER")
+@Table(name = "application_weather")
 @Entity
 public class Weather {
 

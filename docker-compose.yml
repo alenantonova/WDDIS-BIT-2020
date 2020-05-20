@@ -9,8 +9,30 @@ services:
     build: ./weather-service/
     ports:
       - "8091:8091"
+    depends_on:
+      - db
 
   rbc:
     build: ./rbc-service/
     ports:
       - "8093:8093"
+
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=alena
+      - POSTGRES_PASSWORD=alena
+      - POSTGRES_NAME=alena
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mydomain.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
