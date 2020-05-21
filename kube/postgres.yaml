@@ -4,8 +4,8 @@ metadata:
   name: postgres-config
   namespace: default
 data:
-  postgres_user: usr
-  postgres_password: pwd
+  postgres_user: alena
+  postgres_password: alena
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

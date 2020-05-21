@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: predict
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: predict
+  template:
+    metadata:
+      name: predict
+      labels:
+        app: predict
+    spec:
+      containers:
+        - name: predict
+          env:
+          image: predict
+          imagePullPolicy: IfNotPresent

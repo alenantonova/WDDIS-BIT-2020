@@ -27,5 +27,5 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres_password
-          image: weather
+          image: weather1
           imagePullPolicy: IfNotPresent
