@@ -10,7 +10,7 @@ services:
     ports:
       - "8091:8091"
     depends_on:
-      - db
+      - postgres
 
   rbc:
     build: ./rbc-service/
@@ -18,7 +18,7 @@ services:
       - "8093:8093"
 
 
-  db:
+  postgres:
     image: postgres
     environment:
       - POSTGRES_USER=alena
@@ -32,7 +32,19 @@ services:
     ports:
       - "5050:80"
     depends_on:
-      - db
+      - postgres
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@mydomain.com
       - PGADMIN_DEFAULT_PASSWORD=postgres
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
